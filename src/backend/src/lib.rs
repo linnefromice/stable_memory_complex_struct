@@ -24,6 +24,31 @@ fn default() -> types::Snapshot {
     types::Snapshot::default()
 }
 
+// stable: cell
+#[ic_cdk::query]
+#[candid::candid_method(query)]
+fn get_cell() -> types::Snapshot {
+    STABLE_CELL.with(|p| p.borrow().get().clone())
+}
+#[ic_cdk::update]
+#[candid::candid_method(update)]
+fn update_from_dummy() {
+    let datum = dummy();
+    update_cell(datum);
+}
+#[ic_cdk::update]
+#[candid::candid_method(update)]
+fn update_from_default() {
+    let datum = default();
+    update_cell(datum);
+}
+fn update_cell(data: types::Snapshot) {
+    STABLE_CELL.with(|mem| {
+        mem.borrow_mut().set(data.clone()).unwrap();
+    });
+}
+
+// stable: vec
 #[ic_cdk::query]
 #[candid::candid_method(query)]
 fn get_last_data() -> types::Snapshot {

@@ -25,6 +25,9 @@ service : {
   add_from_dummy : () -> ();
   default : () -> (Snapshot) query;
   dummy : () -> (Snapshot) query;
+  get_cell : () -> (Snapshot) query;
   get_data : (nat64) -> (Snapshot) query;
   get_last_data : () -> (Snapshot) query;
+  update_from_default : () -> ();
+  update_from_dummy : () -> ();
 }
