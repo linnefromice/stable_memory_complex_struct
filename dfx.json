@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "stable_memory_complex_struct_backend": {
+      "candid": "src/stable_memory_complex_struct_backend/stable_memory_complex_struct_backend.did",
+      "package": "stable_memory_complex_struct_backend",
+      "type": "rust"
+    },
+    "stable_memory_complex_struct_frontend": {
+      "dependencies": [
+        "stable_memory_complex_struct_backend"
+      ],
+      "source": [
+        "src/stable_memory_complex_struct_frontend/assets"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
