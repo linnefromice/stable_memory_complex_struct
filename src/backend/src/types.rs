@@ -69,8 +69,6 @@ impl<'de> serde::de::Visitor<'de> for CustomVisitor {
     {
         let mut result = BTreeMap::new();
         while let Some((k, v)) = map.next_entry::<i64, Tick>()? {
-            // ic_cdk::println!("key={}", &k);
-            // ic_cdk::println!("value={:?}", &v);
             result.insert(
                 k.to_string(),
                 v
