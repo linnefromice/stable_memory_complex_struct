@@ -9,10 +9,15 @@ pub struct Snapshot {
 }
 impl ic_stable_structures::Storable for Snapshot {
     fn from_bytes(bytes: std::borrow::Cow<[u8]>) -> Self {
+        ic_cdk::println!("from_bytes");
+        ic_cdk::println!("{:x?}", bytes);
         Decode!(bytes.as_ref(), Self).unwrap()
     }
     fn to_bytes(&self) -> std::borrow::Cow<[u8]> {
-        Cow::Owned(Encode!(self).unwrap())
+        let bytes = Encode!(self).unwrap();
+        ic_cdk::println!("to_bytes");
+        ic_cdk::println!("{:x?}", bytes);
+        Cow::Owned(bytes)
     }
 }
 impl ic_stable_structures::BoundedStorable for Snapshot {
